@@ -10,10 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_173058) do
+ActiveRecord::Schema.define(version: 2020_11_16_225424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "estados", force: :cascade do |t|
+    t.string "descripcion"
+    t.string "clave"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "objetos", force: :cascade do |t|
+    t.integer "peso"
+    t.integer "tamano"
+    t.integer "alto"
+    t.integer "largo"
+    t.integer "ancho"
+    t.string "descripcion"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recibos", force: :cascade do |t|
+    t.integer "subtotal"
+    t.integer "tarifa"
+    t.integer "iva"
+    t.integer "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ticket_soportes", force: :cascade do |t|
+    t.string "descripcion"
+    t.string "estatus"
+    t.date "fecha"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tipo_vehiculos", force: :cascade do |t|
+    t.string "descripcion"
+    t.string "clave"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +69,27 @@ ActiveRecord::Schema.define(version: 2020_09_16_173058) do
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vehiculos", force: :cascade do |t|
+    t.integer "espacio"
+    t.string "marca"
+    t.string "modelo"
+    t.string "color"
+    t.string "placas"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "viajes", force: :cascade do |t|
+    t.string "lugarOrigen"
+    t.string "lugarDestino"
+    t.datetime "horaEntregadaAcordada"
+    t.datetime "horaEntrega"
+    t.datetime "horaRecogida"
+    t.datetime "horaRecogidaAcordada"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
