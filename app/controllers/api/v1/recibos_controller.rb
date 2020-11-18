@@ -18,7 +18,7 @@ class Api::V1::RecibosController < ApplicationController
     @recibo = Recibo.new(recibo_params)
 
     if @recibo.save
-      render json: @recibo, status: :created, location: @recibo
+      render json: @recibo, status: :created
     else
       render json: @recibo.errors, status: :unprocessable_entity
     end

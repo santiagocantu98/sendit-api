@@ -18,7 +18,7 @@ class Api::V1::ObjetosController < ApplicationController
     @objeto = Objeto.new(objeto_params)
 
     if @objeto.save
-      render json: @objeto, status: :created, location: @objeto
+      render json: @objeto, status: :created
     else
       render json: @objeto.errors, status: :unprocessable_entity
     end

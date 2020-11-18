@@ -18,7 +18,7 @@ class Api::V1::TipoVehiculosController < ApplicationController
     @tipo_vehiculo = TipoVehiculo.new(tipo_vehiculo_params)
 
     if @tipo_vehiculo.save
-      render json: @tipo_vehiculo, status: :created, location: @tipo_vehiculo
+      render json: @tipo_vehiculo, status: :created
     else
       render json: @tipo_vehiculo.errors, status: :unprocessable_entity
     end

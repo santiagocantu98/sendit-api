@@ -18,7 +18,8 @@ class Api::V1::EstadosController < ApplicationController
     @estado = Estado.new(estado_params)
 
     if @estado.save
-      render json: @estado, status: :created, location: @estado
+      render json: @estado, status: :created
+      
     else
       render json: @estado.errors, status: :unprocessable_entity
     end

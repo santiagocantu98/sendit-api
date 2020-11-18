@@ -18,7 +18,7 @@ class Api::V1::TicketSoportesController < ApplicationController
     @ticket_soporte = TicketSoporte.new(ticket_soporte_params)
 
     if @ticket_soporte.save
-      render json: @ticket_soporte, status: :created, location: @ticket_soporte
+      render json: @ticket_soporte, status: :created
     else
       render json: @ticket_soporte.errors, status: :unprocessable_entity
     end

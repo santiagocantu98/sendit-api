@@ -18,7 +18,7 @@ class Api::V1::ViajesController < ApplicationController
     @viaje = Viaje.new(viaje_params)
 
     if @viaje.save
-      render json: @viaje, status: :created, location: @viaje
+      render json: @viaje, status: :created
     else
       render json: @viaje.errors, status: :unprocessable_entity
     end
