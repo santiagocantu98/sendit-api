@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   acts_as_token_authenticatable
 
+  has_one :estado
+
+
+
 #  before_save :set_delfault_role
 
   def administrador?
