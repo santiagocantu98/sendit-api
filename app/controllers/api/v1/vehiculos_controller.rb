@@ -48,6 +48,6 @@ class Api::V1::VehiculosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def vehiculo_params
-      params.require(:vehiculo).permit(:espacio, :marca, :modelo, :color, :placas)
+      params.require(:vehiculo).permit(:espacio, :marca, :modelo, :color, :placas, :user_id, :tipo_vehiculo_id)
     end
 end
