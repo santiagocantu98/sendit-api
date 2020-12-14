@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_225424) do
+ActiveRecord::Schema.define(version: 2020_12_14_004001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2020_11_16_225424) do
     t.integer "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "viaje_id", null: false
+    t.index ["viaje_id"], name: "index_recibos_on_viaje_id"
   end
 
   create_table "ticket_soportes", force: :cascade do |t|
@@ -48,6 +50,10 @@ ActiveRecord::Schema.define(version: 2020_11_16_225424) do
     t.date "fecha"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "viaje_id", null: false
+    t.bigint "administrador_id", null: false
+    t.index ["administrador_id"], name: "index_ticket_soportes_on_administrador_id"
+    t.index ["viaje_id"], name: "index_ticket_soportes_on_viaje_id"
   end
 
   create_table "tipo_vehiculos", force: :cascade do |t|
@@ -66,8 +72,14 @@ ActiveRecord::Schema.define(version: 2020_11_16_225424) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "authentication_token", limit: 30
+    t.string "role"
+    t.integer "calificacionProm"
+    t.bigint "estado_id", null: false
+    t.string "name"
+    t.string "telefono"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["estado_id"], name: "index_users_on_estado_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -79,6 +91,10 @@ ActiveRecord::Schema.define(version: 2020_11_16_225424) do
     t.string "placas"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "tipo_vehiculo_id", null: false
+    t.index ["tipo_vehiculo_id"], name: "index_vehiculos_on_tipo_vehiculo_id"
+    t.index ["user_id"], name: "index_vehiculos_on_user_id"
   end
 
   create_table "viajes", force: :cascade do |t|
@@ -90,6 +106,27 @@ ActiveRecord::Schema.define(version: 2020_11_16_225424) do
     t.datetime "horaRecogidaAcordada"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "driver_id", null: false
+    t.bigint "vehiculo_id", null: false
+    t.bigint "objeto_id", null: false
+    t.decimal "calificacionTransportista"
+    t.decimal "calificacionCliente"
+    t.integer "estado"
+    t.index ["driver_id"], name: "index_viajes_on_driver_id"
+    t.index ["objeto_id"], name: "index_viajes_on_objeto_id"
+    t.index ["user_id"], name: "index_viajes_on_user_id"
+    t.index ["vehiculo_id"], name: "index_viajes_on_vehiculo_id"
   end
 
+  add_foreign_key "recibos", "viajes"
+  add_foreign_key "ticket_soportes", "users", column: "administrador_id"
+  add_foreign_key "ticket_soportes", "viajes"
+  add_foreign_key "users", "estados"
+  add_foreign_key "vehiculos", "tipo_vehiculos"
+  add_foreign_key "vehiculos", "users"
+  add_foreign_key "viajes", "objetos"
+  add_foreign_key "viajes", "users"
+  add_foreign_key "viajes", "users", column: "driver_id"
+  add_foreign_key "viajes", "vehiculos"
 end
