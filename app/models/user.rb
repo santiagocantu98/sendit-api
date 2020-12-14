@@ -11,22 +11,22 @@ class User < ApplicationRecord
 
 
 
-#  before_save :set_delfault_role
+  after_initialize :set_delfault_role
 
   def administrador?
-    self.type == "administrador"
+    self.role == "administrador"
   end
 
   def cliente?
-    self.type == "cliente"
+    self.role == "cliente"
   end
 
   def transportista?
-    self.type == "transportista"
+    self.role == "transportista"
   end
 
-  def set_delfault_type
-    self.type = "administrador" if self.type.nil?
+  def set_delfault_role
+    self.role == "administrador" if self.role.nil?
   end
 
 
