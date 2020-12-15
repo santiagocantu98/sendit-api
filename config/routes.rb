@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :ticket_soportes
       resources :recibos
       resources :tipo_vehiculos
+      resources :ubicacion_transportes
       resources :vehiculos
       devise_scope :user do
         post "sign_up", to: "registrations#create"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_191023) do
+ActiveRecord::Schema.define(version: 2020_12_15_080110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,21 +23,21 @@ ActiveRecord::Schema.define(version: 2020_12_14_191023) do
   end
 
   create_table "objetos", force: :cascade do |t|
-    t.integer "peso"
-    t.integer "tamano"
-    t.integer "alto"
-    t.integer "largo"
-    t.integer "ancho"
+    t.decimal "peso"
+    t.decimal "tamano"
+    t.decimal "alto"
+    t.decimal "largo"
+    t.decimal "ancho"
     t.string "descripcion"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "recibos", force: :cascade do |t|
-    t.integer "subtotal"
-    t.integer "tarifa"
-    t.integer "iva"
-    t.integer "total"
+    t.decimal "subtotal"
+    t.decimal "tarifa"
+    t.decimal "iva"
+    t.decimal "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "viaje_id", null: false
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(version: 2020_12_14_191023) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
-    t.bigint "driver_id", null: false
-    t.bigint "vehiculo_id", null: false
+    t.bigint "driver_id"
+    t.bigint "vehiculo_id"
     t.bigint "objeto_id", null: false
     t.decimal "calificacionTransportista"
     t.decimal "calificacionCliente"

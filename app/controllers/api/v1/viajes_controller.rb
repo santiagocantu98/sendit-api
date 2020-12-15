@@ -46,6 +46,6 @@ class Api::V1::ViajesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def viaje_params
-      params.require(:viaje).permit(:lugarOrigen, :lugarDestino, :horaEntregadaAcordada, :horaEntrega, :horaRecogida, :horaRecogidaAcordada)
+      params.require(:viaje).permit(:lugarOrigen, :lugarDestino, :horaEntregadaAcordada, :horaEntrega, :horaRecogida, :horaRecogidaAcordada, :user_id, :driver_id, :vehiculo_id, :objeto_id, :calificacionTransportista, :calificacionCliente, :estado)
     end
 end
