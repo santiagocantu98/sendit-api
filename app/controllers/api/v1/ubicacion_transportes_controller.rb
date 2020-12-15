@@ -18,7 +18,7 @@ class Api::V1::UbicacionTransportesController < ApplicationController
     @ubicacion_transporte = UbicacionTransporte.new(ubicacion_transporte_params)
 
     if @ubicacion_transporte.save
-      render json: @ubicacion_transporte, status: :created, location: @ubicacion_transporte
+      render json: @ubicacion_transporte, status: :created
     else
       render json: @ubicacion_transporte.errors, status: :unprocessable_entity
     end
