@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   namespace :api, defaults: {format: :json} do
     namespace :v1 do 
+      resources :users
       resources :viajes
       resources :estados
       resources :objetos
@@ -15,8 +16,7 @@ Rails.application.routes.draw do
         post "sign_in", to: "sessions#create"
       end
 
-
-      jsonapi_resources :users
+      #jsonapi_resources :users 
     end
   end
 end
