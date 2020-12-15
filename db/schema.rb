@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_15_080110) do
+ActiveRecord::Schema.define(version: 2020_12_15_091507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 2020_12_15_080110) do
     t.string "clave"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ubicacion_transportes", force: :cascade do |t|
+    t.decimal "latitud"
+    t.decimal "longitud"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_ubicacion_transportes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -114,6 +123,10 @@ ActiveRecord::Schema.define(version: 2020_12_15_080110) do
     t.decimal "calificacionTransportista"
     t.decimal "calificacionCliente"
     t.integer "estado"
+    t.decimal "latitudOrigen"
+    t.decimal "longitudOrigen"
+    t.decimal "latitudDestino"
+    t.decimal "longitudDestino"
     t.index ["driver_id"], name: "index_viajes_on_driver_id"
     t.index ["objeto_id"], name: "index_viajes_on_objeto_id"
     t.index ["user_id"], name: "index_viajes_on_user_id"
@@ -123,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_12_15_080110) do
   add_foreign_key "recibos", "viajes"
   add_foreign_key "ticket_soportes", "users", column: "administrador_id"
   add_foreign_key "ticket_soportes", "viajes"
+  add_foreign_key "ubicacion_transportes", "users"
   add_foreign_key "users", "estados"
   add_foreign_key "vehiculos", "tipo_vehiculos"
   add_foreign_key "vehiculos", "users"
