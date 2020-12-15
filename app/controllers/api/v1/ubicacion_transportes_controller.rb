@@ -46,6 +46,6 @@ class Api::V1::UbicacionTransportesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ubicacion_transporte_params
-      params.require(:ubicacion_transporte).permit(:latitud, :longitud)
+      params.require(:ubicacion_transporte).permit(:latitud, :longitud, :user_id)
     end
 end
