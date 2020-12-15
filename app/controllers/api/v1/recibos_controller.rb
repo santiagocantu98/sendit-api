@@ -46,6 +46,6 @@ class Api::V1::RecibosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def recibo_params
-      params.require(:recibo).permit(:subtotal, :tarifa, :iva, :total)
+      params.require(:recibo).permit(:subtotal, :tarifa, :iva, :total, :viaje_id)
     end
 end
