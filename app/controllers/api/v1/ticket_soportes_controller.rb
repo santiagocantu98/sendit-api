@@ -46,6 +46,6 @@ class Api::V1::TicketSoportesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ticket_soporte_params
-      params.require(:ticket_soporte).permit(:descripcion, :estatus, :fecha)
+      params.require(:ticket_soporte).permit(:descripcion, :estatus, :fecha, :viaje_id, :administrador_id)
     end
 end
