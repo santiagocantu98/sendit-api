@@ -3,7 +3,7 @@ class Api::V1::RecibosController < ApplicationController
 
   # GET /recibos
   def index
-    @recibos = Recibo.all
+    @recibos = Recibo.all.order("id")
 
     render json: @recibos
   end
@@ -46,6 +46,6 @@ class Api::V1::RecibosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def recibo_params
-      params.require(:recibo).permit(:subtotal, :tarifa, :iva, :total, :viaje_id, :administrador_id)
+      params.require(:recibo).permit(:subtotal, :tarifa, :iva, :total, :viaje_id)
     end
 end
