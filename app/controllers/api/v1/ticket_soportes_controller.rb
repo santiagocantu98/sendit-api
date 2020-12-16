@@ -3,7 +3,7 @@ class Api::V1::TicketSoportesController < ApplicationController
 
   # GET /ticket_soportes
   def index
-    @ticket_soportes = TicketSoporte.all
+    @ticket_soportes = TicketSoporte.all.order("id ASC")
 
     render json: @ticket_soportes
   end

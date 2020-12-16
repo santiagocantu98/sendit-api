@@ -3,7 +3,7 @@ class Api::V1::RecibosController < ApplicationController
 
   # GET /recibos
   def index
-    @recibos = Recibo.all.order("id")
+    @recibos = Recibo.all.order("id ASC")
 
     render json: @recibos
   end

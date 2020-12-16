@@ -3,7 +3,7 @@ class Api::V1::UbicacionTransportesController < ApplicationController
 
   # GET /ubicacion_transportes
   def index
-    @ubicacion_transportes = UbicacionTransporte.all
+    @ubicacion_transportes = UbicacionTransporte.all.order("id ASC")
 
     render json: @ubicacion_transportes
   end

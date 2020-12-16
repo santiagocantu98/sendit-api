@@ -3,7 +3,7 @@ class Api::V1::EstadosController < ApplicationController
 
   # GET /estados
   def index
-    @estados = Estado.all
+    @estados = Estado.all.order("id ASC")
 
     render json: @estados
   end

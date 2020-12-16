@@ -3,7 +3,7 @@ class Api::V1::ObjetosController < ApplicationController
 
   # GET /objetos
   def index
-    @objetos = Objeto.all
+    @objetos = Objeto.all.order("id ASC")
 
     render json: @objetos
   end

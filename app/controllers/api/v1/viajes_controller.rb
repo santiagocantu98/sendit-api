@@ -3,7 +3,7 @@ class Api::V1::ViajesController < ApplicationController
 
   # GET /viajes
   def index
-    @viajes = Viaje.all
+    @viajes = Viaje.all.order("id ASC")
 
     render json: @viajes
   end

@@ -3,7 +3,7 @@ class Api::V1::VehiculosController < ApplicationController
 
   # GET /vehiculos
   def index
-    @vehiculos = Vehiculo.all
+    @vehiculos = Vehiculo.all.order("id ASC")
 
     render json: @vehiculos
   end

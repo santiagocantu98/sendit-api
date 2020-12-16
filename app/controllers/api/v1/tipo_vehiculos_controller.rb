@@ -3,7 +3,7 @@ class Api::V1::TipoVehiculosController < ApplicationController
 
   # GET /tipo_vehiculos
   def index
-    @tipo_vehiculos = TipoVehiculo.all
+    @tipo_vehiculos = TipoVehiculo.all.order("id ASC")
 
     render json: @tipo_vehiculos
   end
