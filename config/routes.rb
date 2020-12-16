@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       end
       resources :viajes
       resources :estados
+      resources :ubicacion_recurrentes
       resources :objetos do
         get :imagenObjeto, on: :member
       end

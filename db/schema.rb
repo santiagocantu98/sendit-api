@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_16_104835) do
+ActiveRecord::Schema.define(version: 2020_12_16_163656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,16 @@ ActiveRecord::Schema.define(version: 2020_12_16_104835) do
     t.string "clave"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ubicacion_recurrentes", force: :cascade do |t|
+    t.string "direccion"
+    t.decimal "latitud"
+    t.decimal "longitud"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_ubicacion_recurrentes_on_user_id"
   end
 
   create_table "ubicacion_transportes", force: :cascade do |t|
@@ -158,6 +168,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_104835) do
   add_foreign_key "recibos", "viajes"
   add_foreign_key "ticket_soportes", "users", column: "administrador_id"
   add_foreign_key "ticket_soportes", "viajes"
+  add_foreign_key "ubicacion_recurrentes", "users"
   add_foreign_key "ubicacion_transportes", "users"
   add_foreign_key "users", "estados"
   add_foreign_key "vehiculos", "tipo_vehiculos"
