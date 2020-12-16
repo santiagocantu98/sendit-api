@@ -46,6 +46,6 @@ class Api::V1::UbicacionRecurrentesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ubicacion_recurrente_params
-      params.require(:ubicacion_recurrente).permit(:direccion, :latitud, :longitud)
+      params.require(:ubicacion_recurrente).permit(:direccion, :latitud, :longitud, :user_id)
     end
 end
