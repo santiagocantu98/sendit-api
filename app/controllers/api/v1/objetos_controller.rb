@@ -1,6 +1,17 @@
 class Api::V1::ObjetosController < ApplicationController
   before_action :set_objeto, only: [:show, :update, :destroy]
 
+
+  def imagenObjeto
+    objeto = Objeto.find_by(id: params[:id])
+  
+    if objeto&.imagenObjeto&.attached?
+      redirect_to rails_blob_url(objeto.imagenObjeto)
+    else
+      head :not_found
+    end
+  end
+
   # GET /objetos
   def index
     @objetos = Objeto.all.order("id ASC")
@@ -46,6 +57,6 @@ class Api::V1::ObjetosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def objeto_params
-      params.require(:objeto).permit(:peso, :tamano, :alto, :largo, :ancho, :descripcion)
+      params.require(:objeto).permit(:peso, :tamano, :alto, :largo, :ancho, :descripcion, :imagenObjeto)
     end
 end

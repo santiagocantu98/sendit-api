@@ -1,6 +1,17 @@
 class Api::V1::VehiculosController < ApplicationController
   before_action :set_vehiculo, only: [:show, :update, :destroy]
 
+
+  def imagenVehiculo
+    vehiculo = Vehiculo.find_by(id: params[:id])
+  
+    if vehiculo&.imagenVehiculo&.attached?
+      redirect_to rails_blob_url(vehiculo.imagenVehiculo)
+    else
+      head :not_found
+    end
+  end
+
   # GET /vehiculos
   def index
     @vehiculos = Vehiculo.all.order("id ASC")

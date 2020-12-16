@@ -3,6 +3,17 @@ class Api::V1::UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :update, :destroy]
 
+
+  def imagenUsuario
+    user = User.find_by(id: params[:id])
+  
+    if user&.imagenUsuario&.attached?
+      redirect_to rails_blob_url(user.imagenUsuario)
+    else
+      head :not_found
+    end
+  end
+
   # GET /objetos
   def index
     @users = User.all.order("id ASC")
@@ -48,7 +59,7 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :role, :name, :telefono, :estado_id, :fecha_licencia)
+      params.require(:user).permit(:email, :password, :password_confirmation, :role, :name, :telefono, :estado_id, :fecha_licencia, :imagenUsuario)
     end
   
 end

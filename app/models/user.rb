@@ -8,6 +8,7 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
 
   has_one :estado
+  has_one_attached :imagenUsuario
 
 
 
